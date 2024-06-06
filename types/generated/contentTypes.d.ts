@@ -859,7 +859,8 @@ export interface ApiOrderOrder extends Schema.CollectionType {
         minLength: 3;
         maxLength: 20;
       }>;
-    Status: Attribute.Enumeration<['Pending', 'Complete', 'Canceled']>;
+    Status: Attribute.Enumeration<['Pending', 'Complete', 'Canceled']> &
+      Attribute.DefaultTo<'Pending'>;
     Total: Attribute.Decimal &
       Attribute.Required &
       Attribute.SetMinMax<

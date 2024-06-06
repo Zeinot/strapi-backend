@@ -44,7 +44,8 @@
         "Pending",
         "Complete",
         "Canceled"
-      ]
+      ],
+      "default": "Pending"
     },
     "Total": {
       "type": "decimal",
