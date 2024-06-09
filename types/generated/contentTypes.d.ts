@@ -794,15 +794,16 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     Name: Attribute.String;
-    product: Attribute.Relation<
+    products: Attribute.Relation<
       'api::category.category',
-      'oneToOne',
+      'oneToMany',
       'api::product.product'
     >;
     createdAt: Attribute.DateTime;
@@ -869,9 +870,9 @@ export interface ApiOrderOrder extends Schema.CollectionType {
         },
         number
       >;
-    order_product: Attribute.Relation<
+    order_products: Attribute.Relation<
       'api::order.order',
-      'oneToOne',
+      'oneToMany',
       'api::order-product.order-product'
     >;
     createdAt: Attribute.DateTime;
@@ -915,12 +916,12 @@ export interface ApiOrderProductOrderProduct extends Schema.CollectionType {
       Attribute.DefaultTo<0>;
     order: Attribute.Relation<
       'api::order-product.order-product',
-      'oneToOne',
+      'manyToOne',
       'api::order.order'
     >;
     product: Attribute.Relation<
       'api::order-product.order-product',
-      'oneToOne',
+      'manyToOne',
       'api::product.product'
     >;
     createdAt: Attribute.DateTime;
@@ -973,16 +974,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 5;
       }>;
-    category: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::category.category'
-    >;
-    order_product: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::order-product.order-product'
-    >;
     ShortDescription: Attribute.Text &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
@@ -991,6 +982,16 @@ export interface ApiProductProduct extends Schema.CollectionType {
       }>;
     LongDescription: Attribute.Blocks & Attribute.Required;
     Images: Attribute.Media & Attribute.Required;
+    order_products: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::order-product.order-product'
+    >;
+    category: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

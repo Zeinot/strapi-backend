@@ -20,15 +20,15 @@
     },
     "order": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::order.order",
-      "inversedBy": "order_product"
+      "inversedBy": "order_products"
     },
     "product": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::product.product",
-      "inversedBy": "order_product"
+      "inversedBy": "order_products"
     }
   }
 }

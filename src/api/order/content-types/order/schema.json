@@ -53,9 +53,9 @@
       "unique": false,
       "required": true
     },
-    "order_product": {
+    "order_products": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::order-product.order-product",
       "mappedBy": "order"
     }
